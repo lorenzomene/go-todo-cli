@@ -51,3 +51,41 @@ func (todos *Todos) removeTask(idx int) error {
 
 	return nil
 }
+
+func (todos *Todos) toggle(idx int) error {
+	t := *todos
+	if err := t.validateIndex(idx); err != nil {
+		return err
+	}
+
+	completed := t[idx].Status
+	if completed != DONE {
+		complTime := time.Now()
+		t[idx].CompletedAt = &complTime
+		t.updateStatus(idx, DONE)
+	}
+
+	return nil
+}
+
+func (todos *Todos) updateStatus(idx int, status StatusType) error {
+	t := *todos
+	if err := t.validateIndex(idx); err != nil {
+		return err
+	}
+
+	t[idx].Status = status
+
+	return nil
+}
+
+func (todos *Todos) updateTitle(idx int, title string) error {
+	t := *todos
+	if err := t.validateIndex(idx); err != nil {
+		return err
+	}
+
+	t[idx].Title = title
+
+	return nil
+}

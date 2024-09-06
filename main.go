@@ -3,5 +3,14 @@ package main
 import "fmt"
 
 func main() {
-	fmt.Println("inside the main todo app")
+	todos := Todos{}
+	todos.addTask("Buy notebook")
+	todos.addTask("Get visa")
+	todos.addTask("Watch TI")
+
+	fmt.Printf("%+v\n\n", todos)
+
+	todos.removeTask(2)
+
+	fmt.Printf("%+v\n\n", todos)
 }
