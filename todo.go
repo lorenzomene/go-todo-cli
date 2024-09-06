@@ -41,4 +41,13 @@ func (todos *Todos) validateIndex(idx int) error {
 	return nil
 }
 
-func (todos *Todos) removeTask() {}
+func (todos *Todos) removeTask(idx int) error {
+	t := *todos
+	if err := t.validateIndex(idx); err != nil {
+		return err
+	}
+
+	*todos = append(t[:idx], t[idx+1:]...)
+
+	return nil
+}
