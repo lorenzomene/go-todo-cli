@@ -1,16 +1,11 @@
+/*
+Copyright © 2024 NAME HERE <EMAIL ADDRESS>
+
+*/
 package main
 
-import "fmt"
+import "github.com/lorenzomene/go-todo-cli/cmd"
 
 func main() {
-	todos := Todos{}
-	todos.addTask("Buy notebook")
-	todos.addTask("Get visa")
-	todos.addTask("Watch TI")
-
-	fmt.Printf("%+v\n\n", todos)
-
-	todos.removeTask(2)
-
-	fmt.Printf("%+v\n\n", todos)
+	cmd.Execute()
 }
