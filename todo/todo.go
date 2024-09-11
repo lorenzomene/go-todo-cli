@@ -1,4 +1,4 @@
-package main
+package todo
 
 import (
 	"errors"
@@ -22,7 +22,7 @@ type Task struct {
 
 type Todos []Task
 
-func (todos *Todos) addTask(title string) {
+func (todos *Todos) addTask(title string) bool {
 	todo := Task{
 		Title:       title,
 		Status:      TODO,
@@ -31,6 +31,7 @@ func (todos *Todos) addTask(title string) {
 	}
 
 	*todos = append(*todos, todo)
+	return true
 }
 
 func (todos *Todos) validateIndex(idx int) error {
