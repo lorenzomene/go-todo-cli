@@ -3,8 +3,11 @@ package cmd
 import (
 	"fmt"
 
+	"github.com/lorenzomene/go-todo-cli/todo"
 	"github.com/spf13/cobra"
 )
+
+var todos = todo.Todos{}
 
 var addCmd = &cobra.Command{
 	Use:   "add [task]",
@@ -13,7 +16,14 @@ var addCmd = &cobra.Command{
 	Args:  cobra.MinimumNArgs(1),
 	Run: func(cmd *cobra.Command, args []string) {
 		task := args[0]
-		fmt.Println("Task added:", task)
+		success, err := todos.AddTask(task)
+		if err != nil {
+			fmt.Println("Error adding task:", err)
+			return
+		}
+		if success {
+			fmt.Println("Task added:", task)
+		}
 	},
 }
 

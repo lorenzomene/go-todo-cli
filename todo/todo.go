@@ -22,7 +22,7 @@ type Task struct {
 
 type Todos []Task
 
-func (todos *Todos) addTask(title string) bool {
+func (todos *Todos) AddTask(title string) (bool, error) {
 	todo := Task{
 		Title:       title,
 		Status:      TODO,
@@ -31,7 +31,7 @@ func (todos *Todos) addTask(title string) bool {
 	}
 
 	*todos = append(*todos, todo)
-	return true
+	return true, nil
 }
 
 func (todos *Todos) validateIndex(idx int) error {
@@ -42,7 +42,7 @@ func (todos *Todos) validateIndex(idx int) error {
 	return nil
 }
 
-func (todos *Todos) removeTask(idx int) error {
+func (todos *Todos) RemoveTask(idx int) error {
 	t := *todos
 	if err := t.validateIndex(idx); err != nil {
 		return err
@@ -53,7 +53,7 @@ func (todos *Todos) removeTask(idx int) error {
 	return nil
 }
 
-func (todos *Todos) toggle(idx int) error {
+func (todos *Todos) Toggle(idx int) error {
 	t := *todos
 	if err := t.validateIndex(idx); err != nil {
 		return err
@@ -80,7 +80,7 @@ func (todos *Todos) updateStatus(idx int, status StatusType) error {
 	return nil
 }
 
-func (todos *Todos) updateTitle(idx int, title string) error {
+func (todos *Todos) UpdateTitle(idx int, title string) error {
 	t := *todos
 	if err := t.validateIndex(idx); err != nil {
 		return err
