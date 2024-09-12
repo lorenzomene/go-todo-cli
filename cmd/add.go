@@ -3,11 +3,8 @@ package cmd
 import (
 	"fmt"
 
-	"github.com/lorenzomene/go-todo-cli/todo"
 	"github.com/spf13/cobra"
 )
-
-var todos = todo.Todos{}
 
 var addCmd = &cobra.Command{
 	Use:   "add [task]",
